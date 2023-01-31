@@ -1,20 +1,33 @@
-const carrito = [
-    {id: 1, nombre: 'sacapuntas',precio: 200 },
-    {id: 2, nombre: 'goma',precio: 200},
-    {id: 3, nombre: 'lapiz',precio: 200},
+let divCarrito = document.querySelector("#divCarrito")
+
+const catalogo = [
+    {id: 1, nombre: 'Reloj',precio: 300 },
+    {id: 2, nombre: 'Audífonos',precio: 200},
+    {id: 3, nombre: 'Audífonos',precio: 100},
+    {id: 4, nombre: 'Silla',precio: 400},
 ]
-let carritoCompleto = []
+let carrito = []
 
+let vacio =""
 
+function agregarCarro (producto_id) {
+    let productoAgregado = catalogo.filter(carrito => carrito.id == producto_id);
+    carrito.push(...productoAgregado)
 
-function agregarCarro (Producto_id) {
-    let carritoFiltrado = carrito.filter(carrito => carrito.id == Producto_id);
-    carritoCompleto.push(carritoFiltrado)
-    console.log(carritoCompleto)
-
-    let final = [...carritoFiltrado,...carritoCompleto]
-    console.log(final)
-    document.querySelector(".titulo").textContent= `Nombre del producto: ${final[0].nombre}`; 
-    document.querySelector(".precio").textContent=`Precio:${final[0].precio}`;  
     
-} 
+
+    divCarrito.innerHTML= vacio
+    carrito.forEach(elemento => {
+        let parrafo =document.createElement("div")
+        parrafo.innerHTML = `
+            <p>Producto: ${elemento.nombre}</p>
+            <p>Producto: ${elemento.precio}</p>
+        `;
+        
+        divCarrito.appendChild(parrafo)
+
+        
+        // carrito.innerHTML= 'Nombre del producto:' + elemento.nombre; 
+        // document.querySelector("#carrito").innerHTML='Precio:' + elemento.precio;  
+    })
+}  
